@@ -1,6 +1,5 @@
 # syntax=docker/dockerfile:1
-ARG VOLTO_VERSION
-FROM plone/frontend-builder:${VOLTO_VERSION}
+FROM plone/frontend-builder:16
 
 USER root
 
