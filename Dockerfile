@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM plone/frontend-builder:16
+FROM plone/frontend-builder:16.24.0
 
 USER root
 
