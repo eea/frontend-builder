@@ -36,7 +36,7 @@ RUN <<EOT
     yarn install --network-timeout 1000000
 EOT
 
-COPY --from=SOURCE --chown=node:node scripts/helper.py /setupAddon
+COPY --from=SOURCE --chown=node:node /setupAddon/helper.py  /setupAddon/
 
 USER root
 
