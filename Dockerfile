@@ -2,7 +2,7 @@
 FROM plone/frontend-builder:17 as SOURCE
 
 FROM node:18-bullseye-slim
-ENV VOLTO_VERSION = 17
+ENV VOLTO_VERSION=17
 
 LABEL maintainer="Plone Community <dev@plone.org>" \
       org.label-schema.name="frontend-base" \
