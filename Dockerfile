@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM plone/frontend-builder:17 as SOURCE
+FROM plone/frontend-builder:17.20.2 as SOURCE
 
 FROM node:18-bullseye-slim
 
