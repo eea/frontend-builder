@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM plone/frontend-builder:17.20.2 as SOURCE
+FROM plone/frontend-builder:17 as SOURCE
 
 FROM node:18-bullseye-slim
 
@@ -31,7 +31,7 @@ RUN <<EOT
         --skip-addons \
         --skip-install \
         --skip-workspaces \
-        --volto=17.20.2 \
+        --volto=$(grep '"@plone/volto":' /app/package.json | awk -F'"' '{print $4}') \
         --no-interactive
     yarn install --network-timeout 1000000
 EOT
