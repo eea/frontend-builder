@@ -1,7 +1,10 @@
 # syntax=docker/dockerfile:1
-FROM plone/frontend-builder:17.20.2 as SOURCE
+FROM plone/frontend-builder:17 as SOURCE
 
 FROM node:18-bullseye-slim
+
+COPY --from=SOURCE --chown=node:node /setupAddon  /setupAddon
+COPY --from=SOURCE --chown=node:node /app  /app
 
 
 LABEL maintainer="Plone Community <dev@plone.org>" \
@@ -14,8 +17,6 @@ RUN <<EOT
     apt update
     apt install -y --no-install-recommends python3 build-essential git ca-certificates
     npm install --no-audit --no-fund -g yo @plone/generator-volto@8
-    mkdir /app
-    chown -R node:node /app
     rm -rf /var/lib/apt/lists/*
 EOT
 
@@ -25,18 +26,9 @@ RUN corepack enable
 USER node
 RUN <<EOT
     set -e
-    yo @plone/volto \
-        app \
-        --description "Plone frontend using Volto" \
-        --skip-addons \
-        --skip-install \
-        --skip-workspaces \
-        --volto=17.20.2 \
-        --no-interactive
     yarn install --network-timeout 1000000
 EOT
 
-COPY --from=SOURCE --chown=node:node /setupAddon  /setupAddon
 
 USER root
 
