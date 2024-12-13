@@ -31,7 +31,7 @@ RUN <<EOT
         --skip-addons \
         --skip-install \
         --skip-workspaces \
-        --volto=${VOLTO_VERSION} \
+        --volto=17.20.2 \
         --no-interactive
     yarn install --network-timeout 1000000
 EOT
