@@ -3,6 +3,7 @@ FROM plone/frontend-builder:17.20.2 as SOURCE
 
 FROM node:18-bullseye-slim
 
+ARG VOLTO_VERSION=17.20.2
 
 LABEL maintainer="Plone Community <dev@plone.org>" \
       org.label-schema.name="frontend-base" \
@@ -31,7 +32,7 @@ RUN <<EOT
         --skip-addons \
         --skip-install \
         --skip-workspaces \
-        --volto=17.20.2 \
+        --volto=${VOLTO_VERSION} \
         --no-interactive
     yarn install --network-timeout 1000000
 EOT
