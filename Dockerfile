@@ -1,9 +1,9 @@
 # syntax=docker/dockerfile:1
-FROM plone/frontend-builder:17.20.3 as SOURCE
+FROM plone/frontend-builder:17.22.10 as SOURCE
 
 FROM node:18-bullseye-slim
 
-ARG VOLTO_VERSION=17.20.3
+ARG VOLTO_VERSION=17.22.10
 
 LABEL maintainer="Plone Community <dev@plone.org>" \
       org.label-schema.name="frontend-base" \
