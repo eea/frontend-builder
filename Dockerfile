@@ -5,6 +5,8 @@ FROM node:18-bullseye-slim
 
 ARG VOLTO_VERSION=17.22.0
 
+ENV HOST="0.0.0.0"
+
 LABEL maintainer="Plone Community <dev@plone.org>" \
       org.label-schema.name="frontend-base" \
       org.label-schema.description="Plone frontend builder image" \
