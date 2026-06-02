@@ -1,9 +1,9 @@
 # syntax=docker/dockerfile:1
-FROM plone/frontend-builder:17.23.0 as SOURCE
+FROM plone/frontend-builder:17.16.1 as SOURCE
 
 FROM node:18-bullseye-slim
 
-ARG VOLTO_VERSION=17.23.0
+ARG VOLTO_VERSION=17.16.1
 
 ENV HOST="0.0.0.0"
 
