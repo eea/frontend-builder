@@ -1,6 +1,5 @@
 # syntax=docker/dockerfile:1
-# EEA frontend builder = Plone frontend-builder (Volto project + pnpm + core)
-# + Chromium, so add-on Dockerfiles only need to overlay the add-on.
+# EEA frontend builder: Plone frontend-builder (Volto + pnpm) + Chromium for Cypress.
 FROM plone/frontend-builder:18
 
 ARG CHROMIUM_VERSION=149.0.7827.196-1~deb12u1
@@ -12,10 +11,10 @@ ENV CYPRESS_BROWSER_PATH="/usr/bin/chromium"
 
 LABEL maintainer="European Environment Agency <eea-edw-a-team-alerts@googlegroups.com>" \
       org.label-schema.name="eea-frontend-builder" \
-      org.label-schema.description="EEA Plone Volto 18 frontend builder (Volto project + Chromium for Cypress)" \
+      org.label-schema.description="EEA Plone Volto 18 frontend builder (Volto + Chromium)" \
       org.label-schema.vendor="European Environment Agency"
 
-# Cypress dependencies + Chromium (pinned via a Debian snapshot for reproducibility)
+# Chromium for Cypress (pinned via a Debian snapshot)
 USER root
 RUN apt-get update -q \
     && apt-get install -qy --no-install-recommends \
@@ -38,4 +37,5 @@ RUN set -eux; \
     rm -rf /var/lib/apt/lists/*
 
 USER node
-WORKDIR /app
+ENTRYPOINT ["pnpm"]
+CMD ["start"]
